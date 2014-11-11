@@ -6,7 +6,25 @@
 <h2>Checkpoint 1: Datasets</h2>
 <h3>11/11/2014</h3>
 
-<p>Placeholder.</p>
+<p>The goal of our project is to define an iterative deblurring application that outputs an image that is comparable or better than a deblurred image that uses a general Weiner Filter (one with a gaussian blur). At this point in our project cycle, we have shown basic Weiner Filter and Blind Deconvolution Methods work using built in MATLAB functions. We designed our experiment by blurring a grayscaled image with three different filters, a gaussian blur filter,  a disk blur filter, and a linear motion blur filter. We then used the built in matlab function, <i>deconvwnr</i>, to implement a Weiner filter to deblur each of the images. We used the blur kernels that were used to blur the images as the point spread function for the Weiner filter. Then we estimated the Noise to signal power ratio by trial-and-error, making small changes to the value until the image appeared to be optimally deblurred.  For the Blind Deconvolution process we used the <i>deconvblind</i> matlab function. To estimate our PSF, we used  an 11x11 array of ones because our original PSF’s were 11x11. The results of the of both the Blind Deconvolution and Weiner Filter deblurring algorithms are shown in the attached images.</p>
+
+<p>Our next steps are to write our own blind deconvolution that can improve upon the results we have found so far</p>
+
+<figure>
+  <img src="eecs451_images/plot_1.jpg" alt="Original Images" width="560" height="420">
+  <figcaption>Fig1. - The original image with the non-filtered blurred images</figcaption>
+</figure>
+
+<figure>
+  <img src="eecs451_images/plot_2.jpg" alt="Weiner Filter" width="560" height="420">
+  <figcaption>Fig2. - The images Weiner filtered with the same kernel</figcaption>
+</figure>
+
+
+<figure>
+  <img src="eecs451_images/plot_3.jpg" alt="Blind Deconvolution" width="560" height="420">
+  <figcaption>Fig2. - The images filtered using iterative blind deconvolution</figcaption>
+</figure>
 
 </body>
 </html>
