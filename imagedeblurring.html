@@ -3,6 +3,20 @@
 <body>
 <h1>EECS 451 FA14 Project: Image Deblurring</h1>
 
+<h2>Checkpoint 2: Progress Report</h2>
+<h3>11/25/2014</h3>
+
+<p>We are currently developing our own blind deconvolution algorithm that does not rely on MATLAB's built in deconvolution filters.  We are also working on a method for estimating the point spread function of a blurred image using the wavelet or short time fourier transform. One of the issues we have come across involve handling the error function of the image in our deblurring algorithms. We are also having some difficulty implementing our own blind deconvolution algorithm. We may have to revert to MATLAB's built-in algorithm (but we will be in office hours soon to try and work on the issue). Over the next two weeks our plan is to complete the deblurring algorithms and then to compare the quantitative quality of both algorithms by looking at the error from the original image.</p>
+
+<p>From class we are directly applying convolution, edge detection, and a variation of the short time fourier transform to make our algorithms function. We have also learned about many digital signal processing tools that were not taught to us specifically in class, including the Ayers and Dainty blind deconvolution method and the development of an algorithm that reduces image error using the wavelet transform.</p>
+
+<p>It’s been a wild ride so far, but the most fun and coolest thing we’ve done involved using the MATLAB wavelet toolbox to denoise the images and see the results using images with different properties!</p>
+
+<figure>
+  <img src="eecs451_images/wavelet.jpg" alt="Wavelet" width="560" height="420">
+  <figcaption>Fig1. - Wavelet coefficients using MATLAB wavelet function.</figcaption>
+</figure>
+
 <h2>Checkpoint 1: Datasets</h2>
 <h3>11/11/2014</h3>
 
