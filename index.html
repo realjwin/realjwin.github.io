@@ -61,9 +61,6 @@
                     <li>
                         <a class="page-scroll" href="#reference">References</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -116,9 +113,38 @@
                     <img style="margin-top: -30px; margin-bottom: 10px" src="img_formula/formula3.jpg" width="331" height="48">
                     <p>That's great because now we have a solution for f(x,y) after doing the inverse DFT...except for one problem. The noise. Normally the human eye cannot detect the amounts of noise that the camera adds, but if H(w<sub>1</sub>,w<sub>2</sub>) has low values in any regions then the noise dominates in this formula and all hope of image recovery is lost.</p>
 
-                    <p>For our first example we took an image and articially blurred it to show how deblurring basics work. Note that this image had noise when it was taken from the camera, but we applied the blur kernel (or PSF) to the image and the noise, thus for all intents and purposes there is no noise as described in the above equations. Thus by using <i>fft2</i> and <i>ifft2</i> in MATLAB we are able to recover the image exactly.</p>
+                    <p>For our first example we took an image and artificially blurred it to show how deblurring basics work. Note that this image had noise when it was taken from the camera, but we applied the blur kernel (or PSF) to the image and the noise, thus for all intents and purposes there is no noise as described in the above equations. Thus by using <i>fft2</i> and <i>ifft2</i> in MATLAB we are able to recover the image exactly.</p>
+
+                    <figure>
+                    <img src="img_plot/letter_deblurring_output.jpg" width="719" height="800">
+                    <figcaption>Fig1. - Articial blur added to an image and deblurred using basic principles.</figcaption>
+                    </figure>
+
+                    <p>As you can see this formula works great (as it should) when there is no noise in the system. In the above figure you can see that for both the motion and disk (which behaves like out-of-focus blur) kernels you cannot read the text, but when restored the image looks great. Below we took the disk kernel and showed what happened if we added Gaussian noise to the image AFTER it had been blurred. With added noise, the use of this basic method of image deblurring fails.</p>
+
+                    <figure>
+                    <img src="img_plot/letter_noise_output.jpg" width="1265" height="392" style="margin-left: -300px">
+                    <figcaption>Fig2. - Basic deblurring with additive Gaussian noise. The top is the blurred image, and the bottom is the attempted deblurred image.</figcaption>
+                    </figure>
+                    
+                    <p> </p>
 
                     <h2>Wavelet to the Rescue</h2>
+
+                    <figure>
+                    <img src="img_plot/wavelet.jpg" width="833" height="503" style="margin-left: -40px">
+                    <figcaption>Fig3. - MATLAB Wavelet Toolbox denoising capabilities.</figcaption>
+                    </figure>
+
+                    <p> </p>
+                    <p>To overcome obstacles of signal processing (including noise reduction in image processing), a method called the wavelet transform has been developed. In the case of image processing the wavelet transform is superior to the DFT (Discrete Fourier Transform) and the STFT (Short-Time Fourier Transform). The DFT cannot provide information about how the frequencies vary over time. The STFT solves this issue by taking windows of specified length and shifting them across the signal. This creates multiple DFT's of each of these windows and assumes that the signals in theses intervals are approximately time-invariant. There is still an issue with the STFT as one needs to specify a window of a specific length and use it for the duration of the signal. Signals with a varying range of frequencies can be hard to evaluate because of this. Transients as a result of improper windows can cause aliasing and distort the evaluated signal. Wavelets address the issues of fixed window sizes of the STFT. Wavelets allow variable window sizes while analyzing different frequencies. This is possible by scaling a shifting a certain wavelet function. Small scales are used for high frequencies while large scales are used for low frequencies. The figures below demonstrate the effectiveness of the wavelet transform and its role in noise removal. Noise is unavoidable and almost unpredictable in the collection of images. Moreover, as you have seen noise has adverse effects on image deblurring. In this demonstration, noise was exaggerated by the addition of Gaussian white noise to an out of focus image captured by a camera. It was then shown how this noise negatively affects the deblurring of the image. Using the Wavelet Toolbox in MATLAB, the noise was able to be removed. This allowed for a better deblurred image. The one adverse effect of using the Wavelet Toolbox was that the photo became brighter. This however is because of the toolbox used and not the wavelet transform. We did not dive in-depth into the wavelet transform, but rather wanted to experiment with its capabilities. For more information please see the attached MATLAB code in the References section.</p>
+
+                    <h2>Advanced Methods of Image Deblurring</h2>
+
+                    <p>There are several developed methods of image deblurring when you (1) have noise and/or (2) do not know the point spread function. Typically you have both of these things. For the purposes of this section we will be only focusing on images in which we artificially add both noise and blur. This allows us to quantify the abilities of different debluring algorithms without </p>
+
+                    <h2>Real Image Deblurring</h2>
+
                 </div>
             </div>
         </div>
@@ -137,16 +163,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact Start Bootstrap</h2>
-            </div>
-        </div>
-    </section>
-
 
     <!-- Map Section -->
     <!--<div id="map"></div>-->
