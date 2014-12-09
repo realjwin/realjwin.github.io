@@ -165,9 +165,25 @@
 
                     <h3>Blind Deconvolution</h3>
 
+                    <p>Blind deconvolution is a deconvolution algorithm that works without specific knowledge of the impulse response function used in the convolution. Blind deconvolution permits the recovery of a blurred image without the need for a specific point spread function. In its simplest form the blind deconvolution algorithm is an iterative function, that takes an initial guess for the point spread function and the blurred image, and returns a deblurred image and a new guess for the point spread function. It can be converted to an iterative algorithm, where each iteration processes the initial image with the new hopefully improved guess for the point spread function. It is important to note that the blind deconvolution algorithm has an optimal number of iterations for deblurring an image, and it is possible to have too many iterations causing the deblurred image to appear worse than if less iterations would have. Thus, the blind deconvolution algorithm must be tuned by giving a good initial guess for the PSF, as well as the correct number of iterations in order to successfully deblur an image. A snippet from Ayers and Dainty's first paper on blind deconvolution is included below. This shows the state diagram used to iteratively compute the deblurred image. We implemented it, but because it uses inverse matrices with small values, the inverse matrices are ill-defined. It requires a lot of fine tuning to get the algorithm to converge.</p>
+
+                    <p>PLOT AYERS DAINTY HERE</p>
+
+                    <p>In our project we used the built in matlab function for blind deconvolution to deblur an image with an unknown point spread function. Our goal was to use the blind deconvolution algorithm to deblur an image of handwritten text to the point that the text could be read again.</p>
+
+                    <p>PLOT VARYING PSF HERE</p>
+
+                    <p>Based on how the image appeared to be blurred, we defined our PSF as a disk with a radius in the range 3-7 range. We then guessed and checked  until we found a value for the radius and number of iterations of the algorithm that returned an image with readable text. In order to demonstrate the effect of the initial guess for the PSF had on the blind deconvolution algorithm we plotted the results of the blind deconvolution algorithm for different PSFs but the same number of iterations. Additionally to demonstrate the effect the number of iterations of the algorithm had on the algorithm we plotted the results of the blind deconvolution algorithm for varying numbers numbers of iterations.</p>
+
+                    <p>PLOT VARYING ITERATIONS HERE</p>
+
+                    <p>In the end, it was very difficult to find input values that resulted in a good output, though we settled for a disk PSF radus of 5.4 with 18 iterations.</p>
+
                     <h2>Real Image Deblurring</h2>
 
-                    <p>Now that we have covered several methods of image deblurring, how does it fair on an image taken out-of-focus? We have tested the basic DFT method, Wiener filter, and blind deconvolution. The DFT method was so useless we have chosen not to include it here. This is due to the noise produced by the camera.</p>
+                    <p>Now that we have covered several methods of image deblurring, how does it fare on an image taken out-of-focus? We have tested the basic DFT method, Wiener filter, and blind deconvolution. The DFT method was so useless we have chosen not to include it here. This is due to the noise produced by the camera.</p>
+
+                    <p>PUT PICTURES HERE</p>
 
                     <p>From the plot above you can see that both the Wiener filter and blind deconvolution do a well enough job to make the text readable after deblurring. For the Wiener filter we used: FNISH. For blind deconvolution we used: FINISH. We asked several people in our vicinity if they could read the deblurred image, without knowing what it said and they all were able to read the text from both images. It seems that the Wiener filter was able to give us a better result. We believe this is because of the instabilities associated with blind deconvolution make a general implementation very difficult when no information about the image source. Algorithms more sophisticated than MATLAB's would be able to do a better job.</p>
 
@@ -189,7 +205,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>References</h2>
-                <p>FINISH</p>
+                <p>PUT REFERENCES HERE</p>
 
                 <h2>Contact Information and Files</h2>
 
