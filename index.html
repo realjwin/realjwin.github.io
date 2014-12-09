@@ -46,7 +46,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse" >
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
@@ -92,10 +92,8 @@
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About Grayscale</h2>
-                <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
-                <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
-                <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>
+                <h2>About Image Deblurring</h2>
+                <p>Image deblurring at its basics is taking any image that is not sharply focused and processing it to make it more clear to the viewer. Restoring an image that is &quot;blurred&quot; is one of the most highly publicized parts of image processing. There are several different kinds of image distortions that occur when you take a picture: noise, incorrect focusing, white balance error, exposure error, lens distortion, motion blur, and more. Most people would like their photos to come out sharp and focused, so that viewers can easily see what the photo is about. In our project we will focus mostly on incorrect focusing blur and motion blur. Most of the other distortions are well known and correctly, but the deblurring of images that are focused incorrectly or have camera movement is still very much in development. We will mostly explore incorrect focus and various techniques currently available to deblur images.</p>
             </div>
         </div>
     </section>
@@ -105,9 +103,22 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Download Grayscale</h2>
-                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                    <h2>Deblurring Basics</h2>
+                    <p>We will begin by talking about what causes blur in an image. We will assume that you have some knowledge about linear systems in time and frequency domain, the Discrete Fourier Transform (DFT), and the use of the FFT.</p>
+                    <p>So what causes image blur? The below function outlines the concept of image deblurring:</p>
+                    <img style="margin-top: -30px; margin-bottom: 10px" src="img_formula/formula1.jpg" width="334" height="48">
+                    <p>In this formula f(x,y) represents the unblurred image coming to the camera CCD, h(x,y) represents the blur kernel, and n(x,y) represents the noise added due to the CCD. Notice that the noise is not convolved with the blur kernel, this is because the noise originates from the random motion of electrons in the camera's CCD array, which cannot be avoided and is not blurred. The noise is additive and Gaussian distributed which means that we don't have to worry about its correlation with the proper image itself (though definitely still have to deal with it!).</p>
+                    <p>The blur kernel, also called the point spread function, is caused by improper focusing or by moving the camera while the image is being taken. You can imagine with motion blur, that the pixels in the CCD array have smeared values for what is coming through the lens. There is now one point that has been smeared across multiple pixels. So for each pixel in the CCD we have the sum of multiple pixels in the nearby vicinity. We represent this blur using the point spread function. The advantage of writing the blur in this way is that we can artifically introduce blur by creating our own point spread function (PSF). This allows us to test the effectiveness of different deblurring methods when we know exactly how the image was blurred.</p>
+
+                    <p>The easiest and most obvious way to fix image blur is to look at this formula in the frequency domain (by doing the DFT):</p>
+                    <img style="margin-top: -30px; margin-bottom: 10px" src="img_formula/formula2.jpg" width="584" height="48">
+                    <p>Then by dividing out by H(w<sub>1</sub>,w<sub>2</sub>), we get:</p>
+                    <img style="margin-top: -30px; margin-bottom: 10px" src="img_formula/formula3.jpg" width="331" height="48">
+                    <p>That's great because now we have a solution for f(x,y) after doing the inverse DFT...except for one problem. The noise. Normally the human eye cannot detect the amounts of noise that the camera adds, but if H(w<sub>1</sub>,w<sub>2</sub>) has low values in any regions then the noise dominates in this formula and all hope of image recovery is lost.</p>
+
+                    <p>For our first example we took an image and articially blurred it to show how deblurring basics work. Note that this image had noise when it was taken from the camera, but we applied the blur kernel (or PSF) to the image and the noise, thus for all intents and purposes there is no noise as described in the above equations. Thus by using <i>fft2</i> and <i>ifft2</i> in MATLAB we are able to recover the image exactly.</p>
+
+                    <h2>Wavelet to the Rescue</h2>
                 </div>
             </div>
         </div>
@@ -118,20 +129,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Reference Start Bootstrap</h2>
+                <p>Put links to file here as well as link to checkpoints, as well as update checkpoint</p>
                 <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
                 <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
                 </p>
-                <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-                    <li>
-                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
-                    </li>
-                </ul>
+                <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
             </div>
         </div>
     </section>
