@@ -73,7 +73,7 @@
         <div class="intro-body">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-8 col-md-offset-2" style="color: rgba(0,0,0,.7)">
                         <h1 class="brand-heading">Image Deblurring Basics</h1>
                         <p class="intro-text">A class project for EECS 451 that explores the topic of image deblurring.</p>
                         <a href="#about" class="btn btn-circle page-scroll">
@@ -123,7 +123,7 @@
                     <p>As you can see this formula works great (as it should) when there is no noise in the system. In the above figure you can see that for both the motion and disk (which behaves like out-of-focus blur) kernels you cannot read the text, but when restored the image looks great. Below we took the disk kernel and showed what happened if we added Gaussian noise to the image AFTER it had been blurred. With added noise, the use of this basic method of image deblurring fails.</p>
 
                     <figure>
-                    <img src="img_plot/letter_noise_output.jpg" width="1265" height="392" style="margin-left: -300px">
+                    <img src="img_plot/letter_noise_output.jpg" width="1130" height="392" style="margin-left: -200px">
                     <figcaption>Fig2. - Basic deblurring with additive Gaussian noise. The top is the blurred image, and the bottom is the attempted deblurred image.</figcaption>
                     </figure>
                     
@@ -141,9 +141,43 @@
 
                     <h2>Advanced Methods of Image Deblurring</h2>
 
-                    <p>There are several developed methods of image deblurring when you (1) have noise and/or (2) do not know the point spread function. Typically you have both of these things. For the purposes of this section we will be only focusing on images in which we artificially add both noise and blur. This allows us to quantify the abilities of different debluring algorithms without </p>
+                    <p>There are several developed methods of image deblurring when you (1) have noise and/or (2) do not know the point spread function. Typically you have both of these things. For the purposes of this section we will be only focusing on images in which we artificially add both noise and blur. This allows us to quantify the abilities of different debluring algorithms without any ambiguity.</p>
+
+                    <h3>Wiener Filter</h3>
+
+                    <p>The Wiener filter is an important tool in image processing and it essentially performs deconvolution. The formula for the Wiener filter reduces to:</p>
+
+                    <img style="margin-top: -30px; margin-bottom: 10px" src="img_formula/formula4.jpg" width="392" height="48">
+
+                    <p>Where G(w<sub>1</sub>,w<sub>2</sub>) is the deblurred image, F(w<sub>1</sub>,w<sub>2</sub>) is the blurred image, H(w<sub>1</sub>,w<sub>2</sub>) is the blur kernel, and SNR(w<sub>1</sub>,w<sub>2</sub>) is the singal-to-noise ratio. If there is no noise then the equation reduces to:</p>
+
+                    <img style="margin-top: -30px; margin-bottom: 10px" src="img_formula/formula5.jpg" width="213" height="48">
+
+                    <p>Which is exactly what we did in the basics of image deblurring. But there are some cons of using the Wiener filter. In the representations of the images below we used <i>deconvwnr</i> function in MATLAB. It is noted that this function cannot recover the image perfectly, even when the noise is known. In fact, the original image can only be recovered perfectly when there is no noise and the point spread function is known. Noise has a huge impact on the quality of the recovered photo. If the image has Gaussian white noise, the Wiener filter works well when the variance is small, for example 0.00001. Another downfall of the Wiener filter is it does not work well when the point spread function is not known. </p>
+
+                    <figure>
+                    <img src="img_plot/wiener_output.jpg" width="996" height="557" style="margin-left: -120px">
+                    <figcaption>Fig4. - Different parameters when implementing <i>deconvwnr</i>.</figcaption>
+                    </figure>
+
+                    <p> </p>
+                    <p>One could estimate the point spread function, but even a small change in the point spread function can lead to catastrophic results. It is noted however, if noise parameters are added to an estimated point spread function, than the results can be improved. However, these are still not ideal. In conclusion the Wiener filter is useful when the point spread function is known or can be well estimated, and a good estimation of the noise can be obtained. The issue of noise was dealt with earlier using the wavelet transform.</p>
+
+                    <h3>Blind Deconvolution</h3>
 
                     <h2>Real Image Deblurring</h2>
+
+                    <p>Now that we have covered several methods of image deblurring, how does it fair on an image taken out-of-focus? We have tested the basic DFT method, Wiener filter, and blind deconvolution. The DFT method was so useless we have chosen not to include it here. This is due to the noise produced by the camera.</p>
+
+                    <p>From the plot above you can see that both the Wiener filter and blind deconvolution do a well enough job to make the text readable after deblurring. For the Wiener filter we used: FNISH. For blind deconvolution we used: FINISH. We asked several people in our vicinity if they could read the deblurred image, without knowing what it said and they all were able to read the text from both images. It seems that the Wiener filter was able to give us a better result. We believe this is because of the instabilities associated with blind deconvolution make a general implementation very difficult when no information about the image source. Algorithms more sophisticated than MATLAB's would be able to do a better job.</p>
+
+                    <h2>Conclusion</h2>
+
+                    <p>You may be wondering from the previous section how we chose our values for our estimated PSF, noise levels, and number of iterations. It was a process of repitition, guessing, and checking. One long standing issue in image deblurring with these advanced techniques is what the optimal inputs are for an image and how to quantify that at the output. We were not able to find much information about good methods because it is very image dependent.</p>
+
+                    <p>We had some ideas of possible ways to improve the current algorithms. One idea was to do edge detection on pictures of text to determine whether a giving deblurring output is sufficient without requring human decision making. Another idea was to use multiple deblurring techniques and combine them together with super resolution techniques to create a sharper image. Unfortunately, we did not have time to implement them.</p>
+
+                    <p>We hope this article helped you understand image deblurring. Now you know how to enhance, Enhance, ENHANCE - well not quite, but now you can call out the TV shows on their antics! We would like to say a big thank you to our Professor Laura Balzano and her two GSIs Matt Kvalheim and Yelin Kim for all their instruction of this semester in EECS 451! </p>
 
                 </div>
             </div>
@@ -154,12 +188,15 @@
     <section id="reference" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Reference Start Bootstrap</h2>
-                <p>Put links to file here as well as link to checkpoints, as well as update checkpoint</p>
-                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
-                <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
-                </p>
-                <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                <h2>References</h2>
+                <p>FINISH</p>
+
+                <h2>Contact Information and Files</h2>
+
+                <a href="http://jacobwinick.me/image_deblurring.zip" target="_blank" class="btn btn-default btn-lg">Download MATLAB Code</a>
+                <a href="http://jacobwinick.me/imagedeblurring.html" target="_blank" class="btn btn-default btn-lg">Old Checkpoints</a>
+                <p> </p>
+                <p>Patrick Leavy, Travis Bowers, Jacob Winick, Colin Nangle</p>
             </div>
         </div>
     </section>
@@ -170,7 +207,7 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; Your Website 2014</p>
+            <p>Copyright &copy; EECS 451 2014</p>
         </div>
     </footer>
 
