@@ -1,5 +1,7 @@
+<?php
+    header("content-type: text/xml");
+    echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+?>
 <Response>
-    <Message>
-        <Body>MRacing Carbon Helper is offline or reporting problems.</Body>
-    </Message>
+    <Message>Hello, Mobile Monkey</Message>
 </Response>
