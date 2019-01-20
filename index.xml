@@ -12,4 +12,18 @@
     
     
   </channel>
+</rss>="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About Jacob Winick</title>
+      <link>/about-jacob/</link>
+      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/about-jacob/</guid>
+      <description>I am an MS/PhD candidate at the University of Texas at Austin. My research area is at the intersection of wireless communications and machine learning. I am also rapidly becoming interested in financial systems, specifically: market trading, mechanism design, and (cringe) blockchain.
+In my free time I am also an avid outdoor adventurer. My favorite activity is backcountry skiing, but I also enjoy cycling, climbing, and backpacking. I love the exhilartion of jumping into new outdoor domains.</description>
+    </item>
+    
+  </channel>
 </rss>
