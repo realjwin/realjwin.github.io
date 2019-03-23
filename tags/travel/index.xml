@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jacob Winick</title>
-    <link>/</link>
-    <description>Recent content on Jacob Winick</description>
+    <title>Travel on Jacob Winick</title>
+    <link>/tags/travel/</link>
+    <description>Recent content in Travel on Jacob Winick</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Fri, 22 Mar 2019 23:18:45 -0500</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/travel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,16 +20,6 @@
       <guid>/posts/nola/</guid>
       <description>The Station coffeeshop.
   The Station is a cute coffee shop in the mid-city part of New Orleans with an aesthetic which matches its street name, Bienville. Things are pretty nice here, between the parklets and fanciful blue sloping roof. It is spring time in New Orleans. I have just dropped my parents off at the airport after spending the long weekend romping around New Orleans, Louisiana and Mobile, Alabama with them.</description>
-    </item>
-    
-    <item>
-      <title>About Jacob Winick</title>
-      <link>/about-jacob/</link>
-      <pubDate>Fri, 18 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/about-jacob/</guid>
-      <description>I am an MS/PhD candidate at the University of Texas at Austin. My research area is at the intersection of wireless communications and machine learning. I am also rapidly becoming interested in financial systems, specifically: market trading, mechanism design, and (cringe) blockchain.
-In my free time I am also an avid outdoor adventurer. My favorite activity is backcountry skiing, but I also enjoy cycling, climbing, and backpacking. I love the exhilartion of jumping into new outdoor domains.</description>
     </item>
     
   </channel>
